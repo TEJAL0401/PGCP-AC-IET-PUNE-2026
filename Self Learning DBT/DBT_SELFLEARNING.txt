@@ -1,0 +1,437 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.41 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE TABLE Student(
+    ->     StudID INT,
+    ->     StudName VARCHAR(50),
+    ->     Marks INT
+    -> );
+ERROR 1046 (3D000): No database selected
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1_db     |
+| company_db         |
+| dbd                |
+| ecommerce_db       |
+| hiberdata          |
+| iet                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| prerna             |
+| springdb           |
+| sys                |
++--------------------+
+12 rows in set (0.01 sec)
+
+mysql> use iet
+Database changed
+mysql> CREATE TABLE Student(
+    ->     StudID INT,
+    ->     StudName VARCHAR(50),
+    ->     Marks INT
+    -> );
+ERROR 1050 (42S01): Table 'student' already exists
+mysql> ALTER TABLE Student
+    -> ADD City VARCHAR(30);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Student
+    -> DROP CONSTRAINT chk_marks;
+ERROR 3940 (HY000): Constraint 'chk_marks' does not exist.
+mysql> select* from student;
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1003 | Vrushali |    2 | vrusha@hotmail.com     | vrushali@hotmail.com   | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com            | ruhan.live.com         | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1008 | Nitish   |    4 | nity@live.com          | nitish@live.com        | NULL |
+|      1009 | Gau      |    5 | gaurav@gmail.com       | gau@gmail.com          | NULL |
+|      1010 | Mai      |    4 | mai@gmail.com          | mai@gmail.com          | NULL |
+|      1011 | Bipin    |    5 | bipin@gmail.com        | bipinpatil@gmail.com   | NULL |
+|      1012 | Natasha  |    3 | NULL                   | NULL                   | NULL |
+|      1013 | Bandish  |    2 | NULL                   | NULL                   | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+13 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> SELECT SUM(rnk) AS TotalRank
+    -> FROM student;
++-----------+
+| TotalRank |
++-----------+
+|        34 |
++-----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(*) AS TotalStudents
+    -> FROM student;
++---------------+
+| TotalStudents |
++---------------+
+|            13 |
++---------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT MAX(rnk) AS HighestRank
+    -> FROM student;
++-------------+
+| HighestRank |
++-------------+
+|           5 |
++-------------+
+1 row in set (0.06 sec)
+
+mysql> SELECT MIN(rnk) AS LowestRank
+    -> FROM student;
++------------+
+| LowestRank |
++------------+
+|          1 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT rnk,COUNT(*) AS StudentCount
+    -> FROM student
+    -> GROUP BY rnk;
++------+--------------+
+| rnk  | StudentCount |
++------+--------------+
+|    1 |            4 |
+|    2 |            3 |
+|    3 |            2 |
+|    4 |            2 |
+|    5 |            2 |
++------+--------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT rnk,COUNT(*) AS StudentCount
+    -> FROM student
+    -> GROUP BY rnk
+    -> HAVING COUNT(*) > 2;
++------+--------------+
+| rnk  | StudentCount |
++------+--------------+
+|    1 |            4 |
+|    2 |            3 |
++------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE name LIKE 'N%';
++-----------+---------+------+---------------+-----------------+------+
+| studentID | name    | rnk  | emailID       | userName        | City |
++-----------+---------+------+---------------+-----------------+------+
+|      1006 | Neel    |    2 | nil@gmail.com | neel@gmail.com  | NULL |
+|      1008 | Nitish  |    4 | nity@live.com | nitish@live.com | NULL |
+|      1012 | Natasha |    3 | NULL          | NULL            | NULL |
++-----------+---------+------+---------------+-----------------+------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT rnk
+    -> FROM student;
++------+
+| rnk  |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
+|    5 |
++------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> ORDER BY name;
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1013 | Bandish  |    2 | NULL                   | NULL                   | NULL |
+|      1011 | Bipin    |    5 | bipin@gmail.com        | bipinpatil@gmail.com   | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1009 | Gau      |    5 | gaurav@gmail.com       | gau@gmail.com          | NULL |
+|      1010 | Mai      |    4 | mai@gmail.com          | mai@gmail.com          | NULL |
+|      1012 | Natasha  |    3 | NULL                   | NULL                   | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1008 | Nitish   |    4 | nity@live.com          | nitish@live.com        | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com            | ruhan.live.com         | NULL |
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1003 | Vrushali |    2 | vrusha@hotmail.com     | vrushali@hotmail.com   | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> ORDER BY rnk DESC;
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1009 | Gau      |    5 | gaurav@gmail.com       | gau@gmail.com          | NULL |
+|      1011 | Bipin    |    5 | bipin@gmail.com        | bipinpatil@gmail.com   | NULL |
+|      1008 | Nitish   |    4 | nity@live.com          | nitish@live.com        | NULL |
+|      1010 | Mai      |    4 | mai@gmail.com          | mai@gmail.com          | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com            | ruhan.live.com         | NULL |
+|      1012 | Natasha  |    3 | NULL                   | NULL                   | NULL |
+|      1003 | Vrushali |    2 | vrusha@hotmail.com     | vrushali@hotmail.com   | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1013 | Bandish  |    2 | NULL                   | NULL                   | NULL |
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE rnk BETWEEN 2 AND 4;
++-----------+----------+------+--------------------+----------------------+------+
+| studentID | name     | rnk  | emailID            | userName             | City |
++-----------+----------+------+--------------------+----------------------+------+
+|      1003 | Vrushali |    2 | vrusha@hotmail.com | vrushali@hotmail.com | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com        | ruhan.live.com       | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com      | neel@gmail.com       | NULL |
+|      1008 | Nitish   |    4 | nity@live.com      | nitish@live.com      | NULL |
+|      1010 | Mai      |    4 | mai@gmail.com      | mai@gmail.com        | NULL |
+|      1012 | Natasha  |    3 | NULL               | NULL                 | NULL |
+|      1013 | Bandish  |    2 | NULL               | NULL                 | NULL |
++-----------+----------+------+--------------------+----------------------+------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE emailID IS NULL;
++-----------+----------+------+---------+---------------------+------+
+| studentID | name     | rnk  | emailID | userName            | City |
++-----------+----------+------+---------+---------------------+------+
+|      1012 | Natasha  |    3 | NULL    | NULL                | NULL |
+|      1013 | Bandish  |    2 | NULL    | NULL                | NULL |
+|      1017 | sanchali |    1 | NULL    | sanchaliJ@gmail.com | NULL |
++-----------+----------+------+---------+---------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE emailID IS NOT NULL;
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1003 | Vrushali |    2 | vrusha@hotmail.com     | vrushali@hotmail.com   | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com            | ruhan.live.com         | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1008 | Nitish   |    4 | nity@live.com          | nitish@live.com        | NULL |
+|      1009 | Gau      |    5 | gaurav@gmail.com       | gau@gmail.com          | NULL |
+|      1010 | Mai      |    4 | mai@gmail.com          | mai@gmail.com          | NULL |
+|      1011 | Bipin    |    5 | bipin@gmail.com        | bipinpatil@gmail.com   | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE rnk IN (1,3);
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com            | ruhan.live.com         | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1012 | Natasha  |    3 | NULL                   | NULL                   | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE rnk NOT IN (1,2);
++-----------+---------+------+------------------+----------------------+------+
+| studentID | name    | rnk  | emailID          | userName             | City |
++-----------+---------+------+------------------+----------------------+------+
+|      1005 | Ruhan   |    3 | ru@live.com      | ruhan.live.com       | NULL |
+|      1008 | Nitish  |    4 | nity@live.com    | nitish@live.com      | NULL |
+|      1009 | Gau     |    5 | gaurav@gmail.com | gau@gmail.com        | NULL |
+|      1010 | Mai     |    4 | mai@gmail.com    | mai@gmail.com        | NULL |
+|      1011 | Bipin   |    5 | bipin@gmail.com  | bipinpatil@gmail.com | NULL |
+|      1012 | Natasha |    3 | NULL             | NULL                 | NULL |
++-----------+---------+------+------------------+----------------------+------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(emailID)
+    -> FROM student;
++----------------+
+| COUNT(emailID) |
++----------------+
+|             10 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE emailID LIKE '%gmail.com';
++-----------+---------+------+------------------------+------------------------+------+
+| studentID | name    | rnk  | emailID                | userName               | City |
++-----------+---------+------+------------------------+------------------------+------+
+|      1001 | Saleel  |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1006 | Neel    |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1007 | Deep    |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1009 | Gau     |    5 | gaurav@gmail.com       | gau@gmail.com          | NULL |
+|      1010 | Mai     |    4 | mai@gmail.com          | mai@gmail.com          | NULL |
+|      1011 | Bipin   |    5 | bipin@gmail.com        | bipinpatil@gmail.com   | NULL |
++-----------+---------+------+------------------------+------------------------+------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE emailID LIKE '%live.com';
++-----------+--------+------+---------------+-----------------+------+
+| studentID | name   | rnk  | emailID       | userName        | City |
++-----------+--------+------+---------------+-----------------+------+
+|      1005 | Ruhan  |    3 | ru@live.com   | ruhan.live.com  | NULL |
+|      1008 | Nitish |    4 | nity@live.com | nitish@live.com | NULL |
++-----------+--------+------+---------------+-----------------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE emailID LIKE '%hotmail.com';
++-----------+----------+------+--------------------+----------------------+------+
+| studentID | name     | rnk  | emailID            | userName             | City |
++-----------+----------+------+--------------------+----------------------+------+
+|      1003 | Vrushali |    2 | vrusha@hotmail.com | vrushali@hotmail.com | NULL |
++-----------+----------+------+--------------------+----------------------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> ORDER BY rnk ASC;
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
+|      1003 | Vrushali |    2 | vrusha@hotmail.com     | vrushali@hotmail.com   | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1013 | Bandish  |    2 | NULL                   | NULL                   | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com            | ruhan.live.com         | NULL |
+|      1012 | Natasha  |    3 | NULL                   | NULL                   | NULL |
+|      1008 | Nitish   |    4 | nity@live.com          | nitish@live.com        | NULL |
+|      1010 | Mai      |    4 | mai@gmail.com          | mai@gmail.com          | NULL |
+|      1009 | Gau      |    5 | gaurav@gmail.com       | gau@gmail.com          | NULL |
+|      1011 | Bipin    |    5 | bipin@gmail.com        | bipinpatil@gmail.com   | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+13 rows in set (0.02 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> ORDER BY name DESC;
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1003 | Vrushali |    2 | vrusha@hotmail.com     | vrushali@hotmail.com   | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com            | ruhan.live.com         | NULL |
+|      1008 | Nitish   |    4 | nity@live.com          | nitish@live.com        | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1012 | Natasha  |    3 | NULL                   | NULL                   | NULL |
+|      1010 | Mai      |    4 | mai@gmail.com          | mai@gmail.com          | NULL |
+|      1009 | Gau      |    5 | gaurav@gmail.com       | gau@gmail.com          | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1011 | Bipin    |    5 | bipin@gmail.com        | bipinpatil@gmail.com   | NULL |
+|      1013 | Bandish  |    2 | NULL                   | NULL                   | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE rnk = (
+    ->     SELECT MIN(rnk)
+    ->     FROM student
+    -> );
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student
+    -> WHERE rnk <
+    -> (
+    -> SELECT AVG(rnk)
+    -> FROM student
+    -> );
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1003 | Vrushali |    2 | vrusha@hotmail.com     | vrushali@hotmail.com   | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1013 | Bandish  |    2 | NULL                   | NULL                   | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM student s
+    -> WHERE EXISTS
+    -> (
+    -> SELECT *
+    -> FROM student
+    -> WHERE rnk = 5
+    -> );
++-----------+----------+------+------------------------+------------------------+------+
+| studentID | name     | rnk  | emailID                | userName               | City |
++-----------+----------+------+------------------------+------------------------+------+
+|      1001 | Saleel   |    1 | saleel.songs@gmail.com | saleel.songs@gmail.com | NULL |
+|      1002 | Sharmin  |    1 | sharmin@gmail.com      | sharmin@gmail.com      | NULL |
+|      1003 | Vrushali |    2 | vrusha@hotmail.com     | vrushali@hotmail.com   | NULL |
+|      1005 | Ruhan    |    3 | ru@live.com            | ruhan.live.com         | NULL |
+|      1006 | Neel     |    2 | nil@gmail.com          | neel@gmail.com         | NULL |
+|      1007 | Deep     |    1 | deep@gmail.com         | deep@gmail.com         | NULL |
+|      1008 | Nitish   |    4 | nity@live.com          | nitish@live.com        | NULL |
+|      1009 | Gau      |    5 | gaurav@gmail.com       | gau@gmail.com          | NULL |
+|      1010 | Mai      |    4 | mai@gmail.com          | mai@gmail.com          | NULL |
+|      1011 | Bipin    |    5 | bipin@gmail.com        | bipinpatil@gmail.com   | NULL |
+|      1012 | Natasha  |    3 | NULL                   | NULL                   | NULL |
+|      1013 | Bandish  |    2 | NULL                   | NULL                   | NULL |
+|      1017 | sanchali |    1 | NULL                   | sanchaliJ@gmail.com    | NULL |
++-----------+----------+------+------------------------+------------------------+------+
+13 rows in set (0.01 sec)
+
+mysql>
