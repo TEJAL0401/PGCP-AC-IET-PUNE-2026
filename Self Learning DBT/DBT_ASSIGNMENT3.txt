@@ -1,0 +1,934 @@
+
+mysql> SELECT ENAME FROM EMP WHERE JOB = 'MANAGER';
++---------+
+| ENAME   |
++---------+
+| JONES   |
+| BLAKE   |
+| CLARK   |
+| HOFFMAN |
+| ALEX    |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT ENAME FROM EMP WHERE SAL >= 3000;
++---------+
+| ENAME   |
++---------+
+| AARAV   |
+| SCOTT   |
+| KING    |
+| FRED    |
+| FORD    |
+| HOFFMAN |
++---------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMP WHERE ENAME LIKE '_A%';
++-------+---------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+| EMPNO | ENAME   | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive |
++-------+---------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+|  6781 | BANDISH | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |
+|  7415 | AARAV   | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |
+|  7521 | WARD    | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |
+|  7654 | MARTIN  | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |
+|  7900 | JAMES   | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |
+|  7945 | AARUSH  | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |
+|  8433 | NATASHA | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |
+|  9400 | SANGITA | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |
++-------+---------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT EMPNO, ENAME, HIREDATE, JOB
+    -> FROM EMP
+    -> WHERE DEPTNO = 10;
++-------+--------+------------+-----------+
+| EMPNO | ENAME  | HIREDATE   | JOB       |
++-------+--------+------------+-----------+
+|  7415 | AARAV  | 1981-12-31 | CLERK     |
+|  7421 | THOMAS | 1981-07-19 | CLERK     |
+|  7782 | CLARK  | 1981-06-09 | MANAGER   |
+|  7839 | KING   | 1981-11-17 | PRESIDENT |
+|  7934 | MILLER | 1982-01-23 | CLERK     |
++-------+--------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMP WHERE SAL > 2000;
++-------+---------+--------+----------------+------+------------+------+------+--------+---------+------------+------------+------------+----------+
+| EMPNO | ENAME   | GENDER | JOB            | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME  | PWD        | PHONE      | isActive |
++-------+---------+--------+----------------+------+------------+------+------+--------+---------+------------+------------+------------+----------+
+|  7415 | AARAV   | M      | CLERK          | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV      | NULL       | 7032300084 |        0 |
+|  7566 | JONES   | M      | MANAGER        | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB  | a12recmpm  | 7132300039 |        1 |
+|  7698 | BLAKE   | M      | MANAGER        | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN    | sales@2017 | 7132300027 |        1 |
+|  7782 | CLARK   | M      | MANAGER        | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK      | r50mpm     | 7032300001 |        1 |
+|  7788 | SCOTT   | M      | ANALYST        | 7566 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND | a12recmpm  | NULL       |        1 |
+|  7839 | KING    | M      | PRESIDENT      | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING       | r50mpm     | 7132300081 |        1 |
+|  7840 | FRED    | M      | vice PRESIDENT | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE | a12recmpm  | NULL       |        1 |
+|  7902 | FORD    | M      | ANALYST        | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO    | a12recmpm  | NULL       |        0 |
+|  7919 | HOFFMAN | M      | MANAGER        | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL   | sales@2017 | NULL       |        1 |
+|  7920 | GRASS   | M      | SALESMAN       | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS      | sales@2017 | NULL       |        1 |
++-------+---------+--------+----------------+------+------------+------+------+--------+---------+------------+------------+------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT ENAME
+    -> FROM EMP
+    -> WHERE DEPTNO IN (10,20)
+    -> AND ENAME LIKE 'A%B';
+Empty set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE HIREDATE = '1990-12-21';
+Empty set (0.00 sec)
+
+mysql> SELECT EMPNO, ENAME, JOB, SAL*12 AS ANNUAL_SAL
+    -> FROM EMP
+    -> WHERE DEPTNO = 10;
++-------+--------+-----------+------------+
+| EMPNO | ENAME  | JOB       | ANNUAL_SAL |
++-------+--------+-----------+------------+
+|  7415 | AARAV  | CLERK     |      40200 |
+|  7421 | THOMAS | CLERK     |      21000 |
+|  7782 | CLARK  | MANAGER   |      29400 |
+|  7839 | KING   | PRESIDENT |      60000 |
+|  7934 | MILLER | CLERK     |      15600 |
++-------+--------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE SAL*12 > 25000
+    -> ORDER BY SAL DESC;
++-------+---------+--------+----------------+------+------------+------+------+--------+---------+------------+------------+------------+----------+
+| EMPNO | ENAME   | GENDER | JOB            | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME  | PWD        | PHONE      | isActive |
++-------+---------+--------+----------------+------+------------+------+------+--------+---------+------------+------------+------------+----------+
+|  7839 | KING    | M      | PRESIDENT      | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING       | r50mpm     | 7132300081 |        1 |
+|  7840 | FRED    | M      | vice PRESIDENT | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE | a12recmpm  | NULL       |        1 |
+|  7919 | HOFFMAN | M      | MANAGER        | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL   | sales@2017 | NULL       |        1 |
+|  7415 | AARAV   | M      | CLERK          | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV      | NULL       | 7032300084 |        0 |
+|  7788 | SCOTT   | M      | ANALYST        | 7566 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND | a12recmpm  | NULL       |        1 |
+|  7902 | FORD    | M      | ANALYST        | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO    | a12recmpm  | NULL       |        0 |
+|  7566 | JONES   | M      | MANAGER        | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB  | a12recmpm  | 7132300039 |        1 |
+|  7698 | BLAKE   | M      | MANAGER        | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN    | sales@2017 | 7132300027 |        1 |
+|  7920 | GRASS   | M      | SALESMAN       | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS      | sales@2017 | NULL       |        1 |
+|  7782 | CLARK   | M      | MANAGER        | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK      | r50mpm     | 7032300001 |        1 |
++-------+---------+--------+----------------+------+------------+------+------+--------+---------+------------+------------+------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT ENAME FROM EMP WHERE ENAME LIKE '%F%';
++---------+
+| ENAME   |
++---------+
+| FRED    |
+| FORD    |
+| HOFFMAN |
++---------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT DEPTNO, DNAME
+    -> FROM DEPT
+    -> ORDER BY DNAME DESC;
++--------+------------+
+| DEPTNO | DNAME      |
++--------+------------+
+|     30 | SALES      |
+|     20 | RESEARCH   |
+|     40 | OPERATIONS |
+|     60 | IT         |
+|     50 | HR         |
+|     10 | ACCOUNTING |
++--------+------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, EMPNO, JOB, SAL
+    -> FROM EMP
+    -> WHERE SAL BETWEEN 1000 AND 2000;
++----------+-------+---------------------+------+
+| ENAME    | EMPNO | JOB                 | SAL  |
++----------+-------+---------------------+------+
+| GITA     |  6001 | Compliance officers | 1750 |
+| VRUSHALI |  6129 | Compliance officers | 1750 |
+| SHARMIN  |  6473 | Public Relation     | 1750 |
+| BANDISH  |  6781 | Public Relation     | 1750 |
+| THOMAS   |  7421 | CLERK               | 1750 |
+| ALLEN    |  7499 | SALESMAN            | 1600 |
+| WARD     |  7521 | SALESMAN            | 1250 |
+| MARTIN   |  7654 | SALESMAN            | 1250 |
+| TURNER   |  7844 | SALESMAN            | 1500 |
+| ADAMS    |  7876 | CLERK               | 1100 |
+| Ruhan    |  7888 | Network             | 2000 |
+| Neel     |  7889 | vice PRESIDENT      | 1000 |
+| MILLER   |  7934 | CLERK               | 1300 |
+| AARUSH   |  7945 | SALESMAN            | 1350 |
+| ALEX     |  7949 | MANAGER             | 1250 |
+| NATASHA  |  8433 | CLERK               | 1750 |
+| SANGITA  |  9400 | Compliance officers | 1750 |
+| SUPRIYA  |  9473 | ANALYST             | 1750 |
++----------+-------+---------------------+------+
+18 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, SAL*12*0.011 AS BONUS
+    -> FROM EMP;
++----------+---------+
+| ENAME    | BONUS   |
++----------+---------+
+| GITA     | 231.000 |
+| VRUSHALI | 231.000 |
+| SHARMIN  | 231.000 |
+| BANDISH  | 231.000 |
+| SMITH    | 105.600 |
+| AARAV    | 442.200 |
+| THOMAS   | 231.000 |
+| ALLEN    | 211.200 |
+| WARD     | 165.000 |
+| JONES    | 392.700 |
+| MARTIN   | 165.000 |
+| BLAKE    | 376.200 |
+| CLARK    | 323.400 |
+| SCOTT    | 396.000 |
+| KING     | 660.000 |
+| FRED     | 660.000 |
+| TURNER   | 198.000 |
+| ADAMS    | 145.200 |
+| Ruhan    | 264.000 |
+| Neel     | 132.000 |
+| JAMES    | 125.400 |
+| FORD     | 396.000 |
+| HOFFMAN  | 547.800 |
+| GRASS    | 339.900 |
+| MILLER   | 171.600 |
+| AARUSH   | 178.200 |
+| ALEX     | 165.000 |
+| NATASHA  | 231.000 |
+| SANGITA  | 231.000 |
+| SUPRIYA  | 231.000 |
++----------+---------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, JOB, DEPTNO
+    -> FROM EMP
+    -> WHERE DEPTNO IN (30,40);
++---------+---------------------+--------+
+| ENAME   | JOB                 | DEPTNO |
++---------+---------------------+--------+
+| GITA    | Compliance officers |     30 |
+| ALLEN   | SALESMAN            |     30 |
+| WARD    | SALESMAN            |     30 |
+| MARTIN  | SALESMAN            |     30 |
+| BLAKE   | MANAGER             |     30 |
+| TURNER  | SALESMAN            |     30 |
+| JAMES   | CLERK               |     30 |
+| HOFFMAN | MANAGER             |     30 |
+| GRASS   | SALESMAN            |     30 |
+| AARUSH  | SALESMAN            |     30 |
+| ALEX    | MANAGER             |     30 |
+| NATASHA | CLERK               |     30 |
++---------+---------------------+--------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT EMPNO, ENAME
+    -> FROM EMP
+    -> WHERE JOB IN ('CLERK','MANAGER')
+    -> AND SAL > 1500;
++-------+---------+
+| EMPNO | ENAME   |
++-------+---------+
+|  7415 | AARAV   |
+|  7421 | THOMAS  |
+|  7566 | JONES   |
+|  7698 | BLAKE   |
+|  7782 | CLARK   |
+|  7919 | HOFFMAN |
+|  8433 | NATASHA |
++-------+---------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, SAL*12 AS ANNUAL, COMM AS "Commission Earned"
+    -> FROM EMP
+    -> WHERE SAL > IFNULL(COMM,0)
+    -> ORDER BY SAL DESC, ENAME;
++----------+--------+-------------------+
+| ENAME    | ANNUAL | Commission Earned |
++----------+--------+-------------------+
+| FRED     |  60000 |              NULL |
+| KING     |  60000 |              NULL |
+| HOFFMAN  |  49800 |              NULL |
+| AARAV    |  40200 |              NULL |
+| FORD     |  36000 |              NULL |
+| SCOTT    |  36000 |              NULL |
+| JONES    |  35700 |              NULL |
+| BLAKE    |  34200 |              NULL |
+| CLARK    |  29400 |              NULL |
+| Ruhan    |  24000 |              NULL |
+| BANDISH  |  21000 |              NULL |
+| GITA     |  21000 |              NULL |
+| NATASHA  |  21000 |              NULL |
+| SANGITA  |  21000 |              NULL |
+| SHARMIN  |  21000 |              NULL |
+| SUPRIYA  |  21000 |              NULL |
+| THOMAS   |  21000 |              NULL |
+| VRUSHALI |  21000 |              NULL |
+| ALLEN    |  19200 |               300 |
+| TURNER   |  18000 |                 0 |
+| ALEX     |  15000 |               500 |
+| WARD     |  15000 |               500 |
+| ADAMS    |  13200 |              NULL |
+| Neel     |  12000 |              NULL |
+| JAMES    |  11400 |              NULL |
+| SMITH    |   9600 |              NULL |
++----------+--------+-------------------+
+26 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, JOB
+    -> FROM EMP
+    -> WHERE JOB IN ('SALESMAN','MANAGER')
+    -> AND ENAME LIKE '%S';
++-------+----------+
+| ENAME | JOB      |
++-------+----------+
+| JONES | MANAGER  |
+| GRASS | SALESMAN |
++-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT ENAME FROM EMP
+    -> WHERE SAL > 1000 AND SAL <= 2200;
++----------+
+| ENAME    |
++----------+
+| GITA     |
+| VRUSHALI |
+| SHARMIN  |
+| BANDISH  |
+| THOMAS   |
+| ALLEN    |
+| WARD     |
+| MARTIN   |
+| TURNER   |
+| ADAMS    |
+| Ruhan    |
+| MILLER   |
+| AARUSH   |
+| ALEX     |
+| NATASHA  |
+| SANGITA  |
+| SUPRIYA  |
++----------+
+17 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, SAL
+    -> FROM EMP
+    -> WHERE JOB = 'CLERK';
++---------+------+
+| ENAME   | SAL  |
++---------+------+
+| SMITH   |  800 |
+| AARAV   | 3350 |
+| THOMAS  | 1750 |
+| ADAMS   | 1100 |
+| JAMES   |  950 |
+| MILLER  | 1300 |
+| NATASHA | 1750 |
++---------+------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT DEPTNO, ENAME
+    -> FROM EMP
+    -> WHERE SAL < 2500;
++--------+----------+
+| DEPTNO | ENAME    |
++--------+----------+
+|     30 | GITA     |
+|     50 | VRUSHALI |
+|     20 | SHARMIN  |
+|     20 | BANDISH  |
+|     20 | SMITH    |
+|     10 | THOMAS   |
+|     30 | ALLEN    |
+|     30 | WARD     |
+|     30 | MARTIN   |
+|     10 | CLARK    |
+|     30 | TURNER   |
+|     20 | ADAMS    |
+|     60 | Ruhan    |
+|     60 | Neel     |
+|     30 | JAMES    |
+|     10 | MILLER   |
+|     30 | AARUSH   |
+|     30 | ALEX     |
+|     30 | NATASHA  |
+|     50 | SANGITA  |
+|     50 | SUPRIYA  |
++--------+----------+
+21 rows in set (0.00 sec)
+
+mysql> SELECT EMPNO, ENAME
+    -> FROM EMP
+    -> WHERE JOB = 'PRESIDENT';
++-------+-------+
+| EMPNO | ENAME |
++-------+-------+
+|  7839 | KING  |
++-------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ENAME
+    -> FROM EMP
+    -> WHERE JOB IN ('CLERK','ANALYST','SALESMAN');
++---------+
+| ENAME   |
++---------+
+| SMITH   |
+| AARAV   |
+| THOMAS  |
+| ALLEN   |
+| WARD    |
+| MARTIN  |
+| SCOTT   |
+| TURNER  |
+| ADAMS   |
+| JAMES   |
+| FORD    |
+| GRASS   |
+| MILLER  |
+| AARUSH  |
+| NATASHA |
+| SUPRIYA |
++---------+
+16 rows in set (0.00 sec)
+
+mysql> SELECT ENAME
+    -> FROM EMP
+    -> WHERE ENAME LIKE 'B%' OR ENAME LIKE 'M%';
++---------+
+| ENAME   |
++---------+
+| BANDISH |
+| MARTIN  |
+| BLAKE   |
+| MILLER  |
++---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT ENAME FROM EMP ORDER BY ENAME;
++----------+
+| ENAME    |
++----------+
+| AARAV    |
+| AARUSH   |
+| ADAMS    |
+| ALEX     |
+| ALLEN    |
+| BANDISH  |
+| BLAKE    |
+| CLARK    |
+| FORD     |
+| FRED     |
+| GITA     |
+| GRASS    |
+| HOFFMAN  |
+| JAMES    |
+| JONES    |
+| KING     |
+| MARTIN   |
+| MILLER   |
+| NATASHA  |
+| Neel     |
+| Ruhan    |
+| SANGITA  |
+| SCOTT    |
+| SHARMIN  |
+| SMITH    |
+| SUPRIYA  |
+| THOMAS   |
+| TURNER   |
+| VRUSHALI |
+| WARD     |
++----------+
+30 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE COMM > SAL*0.05;
++-------+--------+--------+----------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+| EMPNO | ENAME  | GENDER | JOB      | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive |
++-------+--------+--------+----------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+|  7499 | ALLEN  | M      | SALESMAN | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |
+|  7521 | WARD   | M      | SALESMAN | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |
+|  7654 | MARTIN | M      | SALESMAN | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |
+|  7920 | GRASS  | M      | SALESMAN | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |
+|  7934 | MILLER | M      | CLERK    | 7782 | 1982-01-23 | 1300 | 1300 |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |
+|  7945 | AARUSH | M      | SALESMAN | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |
+|  7949 | ALEX   | M      | MANAGER  | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |
++-------+--------+--------+----------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, DEPTNO
+    -> FROM EMP
+    -> WHERE EMPNO = 7566;
++-------+--------+
+| ENAME | DEPTNO |
++-------+--------+
+| JONES |     20 |
++-------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ENAME AS NAME, SAL AS "Monthly Salary"
+    -> FROM EMP
+    -> WHERE SAL > 1500 AND DEPTNO IN (10,30);
++---------+----------------+
+| NAME    | Monthly Salary |
++---------+----------------+
+| GITA    |           1750 |
+| AARAV   |           3350 |
+| THOMAS  |           1750 |
+| ALLEN   |           1600 |
+| BLAKE   |           2850 |
+| CLARK   |           2450 |
+| KING    |           5000 |
+| HOFFMAN |           4150 |
+| GRASS   |           2575 |
+| NATASHA |           1750 |
++---------+----------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, SAL, COMM
+    -> FROM EMP
+    -> WHERE COMM IS NOT NULL
+    -> ORDER BY SAL DESC, COMM DESC;
++--------+------+------+
+| ENAME  | SAL  | COMM |
++--------+------+------+
+| GRASS  | 2575 | 2700 |
+| ALLEN  | 1600 |  300 |
+| TURNER | 1500 |    0 |
+| AARUSH | 1350 | 2700 |
+| MILLER | 1300 | 1300 |
+| MARTIN | 1250 | 1400 |
+| WARD   | 1250 |  500 |
+| ALEX   | 1250 |  500 |
++--------+------+------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT ENAME
+    -> FROM EMP
+    -> WHERE ENAME LIKE '__A%';
++---------+
+| ENAME   |
++---------+
+| SHARMIN |
+| BLAKE   |
+| CLARK   |
+| ADAMS   |
+| GRASS   |
++---------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT ENAME
+    -> FROM EMP
+    -> WHERE ENAME LIKE '%LS%LS%'
+    -> AND (DEPTNO = 30 OR MGR = 7782);
+Empty set (0.00 sec)
+
+mysql> SELECT ENAME, JOB, SAL
+    -> FROM EMP
+    -> WHERE JOB IN ('CLERK','ANALYST')
+    -> AND SAL NOT IN (1000,3000,5000);
++---------+---------+------+
+| ENAME   | JOB     | SAL  |
++---------+---------+------+
+| SMITH   | CLERK   |  800 |
+| AARAV   | CLERK   | 3350 |
+| THOMAS  | CLERK   | 1750 |
+| ADAMS   | CLERK   | 1100 |
+| JAMES   | CLERK   |  950 |
+| MILLER  | CLERK   | 1300 |
+| NATASHA | CLERK   | 1750 |
+| SUPRIYA | ANALYST | 1750 |
++---------+---------+------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, SAL, COMM
+    -> FROM EMP
+    -> WHERE COMM > SAL*1.1;
++--------+------+------+
+| ENAME  | SAL  | COMM |
++--------+------+------+
+| MARTIN | 1250 | 1400 |
+| AARUSH | 1350 | 2700 |
++--------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT EMPNO, ENAME,
+    -> (SAL*12 + IFNULL(COMM,0)) AS GROSS
+    -> FROM EMP
+    -> WHERE DEPTNO IN (20,30)
+    -> ORDER BY EMPNO;
++-------+---------+-------+
+| EMPNO | ENAME   | GROSS |
++-------+---------+-------+
+|  6001 | GITA    | 21000 |
+|  6473 | SHARMIN | 21000 |
+|  6781 | BANDISH | 21000 |
+|  7369 | SMITH   |  9600 |
+|  7499 | ALLEN   | 19500 |
+|  7521 | WARD    | 15500 |
+|  7566 | JONES   | 35700 |
+|  7654 | MARTIN  | 16400 |
+|  7698 | BLAKE   | 34200 |
+|  7788 | SCOTT   | 36000 |
+|  7840 | FRED    | 60000 |
+|  7844 | TURNER  | 18000 |
+|  7876 | ADAMS   | 13200 |
+|  7900 | JAMES   | 11400 |
+|  7902 | FORD    | 36000 |
+|  7919 | HOFFMAN | 49800 |
+|  7920 | GRASS   | 33600 |
+|  7945 | AARUSH  | 18900 |
+|  7949 | ALEX    | 15500 |
+|  8433 | NATASHA | 21000 |
++-------+---------+-------+
+20 rows in set (0.00 sec)
+
+mysql> SELECT EMPNO, ENAME, SAL,
+    -> ROUND(SAL*1.15) AS "New Salary"
+    -> FROM EMP;
++-------+----------+------+------------+
+| EMPNO | ENAME    | SAL  | New Salary |
++-------+----------+------+------------+
+|  6001 | GITA     | 1750 |       2013 |
+|  6129 | VRUSHALI | 1750 |       2013 |
+|  6473 | SHARMIN  | 1750 |       2013 |
+|  6781 | BANDISH  | 1750 |       2013 |
+|  7369 | SMITH    |  800 |        920 |
+|  7415 | AARAV    | 3350 |       3853 |
+|  7421 | THOMAS   | 1750 |       2013 |
+|  7499 | ALLEN    | 1600 |       1840 |
+|  7521 | WARD     | 1250 |       1438 |
+|  7566 | JONES    | 2975 |       3421 |
+|  7654 | MARTIN   | 1250 |       1438 |
+|  7698 | BLAKE    | 2850 |       3278 |
+|  7782 | CLARK    | 2450 |       2818 |
+|  7788 | SCOTT    | 3000 |       3450 |
+|  7839 | KING     | 5000 |       5750 |
+|  7840 | FRED     | 5000 |       5750 |
+|  7844 | TURNER   | 1500 |       1725 |
+|  7876 | ADAMS    | 1100 |       1265 |
+|  7888 | Ruhan    | 2000 |       2300 |
+|  7889 | Neel     | 1000 |       1150 |
+|  7900 | JAMES    |  950 |       1093 |
+|  7902 | FORD     | 3000 |       3450 |
+|  7919 | HOFFMAN  | 4150 |       4773 |
+|  7920 | GRASS    | 2575 |       2961 |
+|  7934 | MILLER   | 1300 |       1495 |
+|  7945 | AARUSH   | 1350 |       1553 |
+|  7949 | ALEX     | 1250 |       1438 |
+|  8433 | NATASHA  | 1750 |       2013 |
+|  9400 | SANGITA  | 1750 |       2013 |
+|  9473 | SUPRIYA  | 1750 |       2013 |
++-------+----------+------+------------+
+30 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> SELECT CONCAT(UPPER(LEFT(ENAME,1)), LOWER(SUBSTRING(ENAME,2))) AS NAME,
+    -> LENGTH(ENAME)
+    -> FROM EMP
+    -> WHERE ENAME LIKE 'J%' OR ENAME LIKE 'A%' OR ENAME LIKE 'M%';
++--------+---------------+
+| NAME   | LENGTH(ENAME) |
++--------+---------------+
+| Aarav  |             5 |
+| Allen  |             5 |
+| Jones  |             5 |
+| Martin |             6 |
+| Adams  |             5 |
+| James  |             5 |
+| Miller |             6 |
+| Aarush |             6 |
+| Alex   |             4 |
++--------+---------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT ENAME,
+    -> IFNULL(COMM,'No Commission')
+    -> FROM EMP;
++----------+------------------------------+
+| ENAME    | IFNULL(COMM,'No Commission') |
++----------+------------------------------+
+| GITA     | No Commission                |
+| VRUSHALI | No Commission                |
+| SHARMIN  | No Commission                |
+| BANDISH  | No Commission                |
+| SMITH    | No Commission                |
+| AARAV    | No Commission                |
+| THOMAS   | No Commission                |
+| ALLEN    | 300                          |
+| WARD     | 500                          |
+| JONES    | No Commission                |
+| MARTIN   | 1400                         |
+| BLAKE    | No Commission                |
+| CLARK    | No Commission                |
+| SCOTT    | No Commission                |
+| KING     | No Commission                |
+| FRED     | No Commission                |
+| TURNER   | 0                            |
+| ADAMS    | No Commission                |
+| Ruhan    | No Commission                |
+| Neel     | No Commission                |
+| JAMES    | No Commission                |
+| FORD     | No Commission                |
+| HOFFMAN  | No Commission                |
+| GRASS    | 2700                         |
+| MILLER   | 1300                         |
+| AARUSH   | 2700                         |
+| ALEX     | 500                          |
+| NATASHA  | No Commission                |
+| SANGITA  | No Commission                |
+| SUPRIYA  | No Commission                |
++----------+------------------------------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT ENAME,
+    -> CASE DEPTNO
+    -> WHEN 10 THEN 'Belongs to Dept. 10'
+    -> WHEN 20 THEN 'Belongs to Dept. 20'
+    -> ELSE 'Neither 10 nor 20'
+    -> END
+    -> FROM EMP;
++----------+----------------------------------------------------------------------------------------------------------------+
+| ENAME    | CASE DEPTNO
+WHEN 10 THEN 'Belongs to Dept. 10'
+WHEN 20 THEN 'Belongs to Dept. 20'
+ELSE 'Neither 10 nor 20'
+END |
++----------+----------------------------------------------------------------------------------------------------------------+
+| GITA     | Neither 10 nor 20                                                                                              |
+| VRUSHALI | Neither 10 nor 20                                                                                              |
+| SHARMIN  | Belongs to Dept. 20                                                                                            |
+| BANDISH  | Belongs to Dept. 20                                                                                            |
+| SMITH    | Belongs to Dept. 20                                                                                            |
+| AARAV    | Belongs to Dept. 10                                                                                            |
+| THOMAS   | Belongs to Dept. 10                                                                                            |
+| ALLEN    | Neither 10 nor 20                                                                                              |
+| WARD     | Neither 10 nor 20                                                                                              |
+| JONES    | Belongs to Dept. 20                                                                                            |
+| MARTIN   | Neither 10 nor 20                                                                                              |
+| BLAKE    | Neither 10 nor 20                                                                                              |
+| CLARK    | Belongs to Dept. 10                                                                                            |
+| SCOTT    | Belongs to Dept. 20                                                                                            |
+| KING     | Belongs to Dept. 10                                                                                            |
+| FRED     | Belongs to Dept. 20                                                                                            |
+| TURNER   | Neither 10 nor 20                                                                                              |
+| ADAMS    | Belongs to Dept. 20                                                                                            |
+| Ruhan    | Neither 10 nor 20                                                                                              |
+| Neel     | Neither 10 nor 20                                                                                              |
+| JAMES    | Neither 10 nor 20                                                                                              |
+| FORD     | Belongs to Dept. 20                                                                                            |
+| HOFFMAN  | Neither 10 nor 20                                                                                              |
+| GRASS    | Neither 10 nor 20                                                                                              |
+| MILLER   | Belongs to Dept. 10                                                                                            |
+| AARUSH   | Neither 10 nor 20                                                                                              |
+| ALEX     | Neither 10 nor 20                                                                                              |
+| NATASHA  | Neither 10 nor 20                                                                                              |
+| SANGITA  | Neither 10 nor 20                                                                                              |
+| SUPRIYA  | Neither 10 nor 20                                                                                              |
++----------+----------------------------------------------------------------------------------------------------------------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT ENAME,
+    -> UPPER(LEFT(ENAME,1)) AS ABBR,
+    -> (SAL + IFNULL(COMM,600))*12 AS ANNUAL
+    -> FROM EMP;
++----------+------+--------+
+| ENAME    | ABBR | ANNUAL |
++----------+------+--------+
+| GITA     | G    |  28200 |
+| VRUSHALI | V    |  28200 |
+| SHARMIN  | S    |  28200 |
+| BANDISH  | B    |  28200 |
+| SMITH    | S    |  16800 |
+| AARAV    | A    |  47400 |
+| THOMAS   | T    |  28200 |
+| ALLEN    | A    |  22800 |
+| WARD     | W    |  21000 |
+| JONES    | J    |  42900 |
+| MARTIN   | M    |  31800 |
+| BLAKE    | B    |  41400 |
+| CLARK    | C    |  36600 |
+| SCOTT    | S    |  43200 |
+| KING     | K    |  67200 |
+| FRED     | F    |  67200 |
+| TURNER   | T    |  18000 |
+| ADAMS    | A    |  20400 |
+| Ruhan    | R    |  31200 |
+| Neel     | N    |  19200 |
+| JAMES    | J    |  18600 |
+| FORD     | F    |  43200 |
+| HOFFMAN  | H    |  57000 |
+| GRASS    | G    |  63300 |
+| MILLER   | M    |  31200 |
+| AARUSH   | A    |  48600 |
+| ALEX     | A    |  21000 |
+| NATASHA  | N    |  28200 |
+| SANGITA  | S    |  28200 |
+| SUPRIYA  | S    |  28200 |
++----------+------+--------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT E.ENAME
+    -> FROM EMP E JOIN DEPT D
+    -> ON E.DEPTNO = D.DEPTNO
+    -> WHERE D.LOC = 'BOSTON';
+Empty set (0.00 sec)
+
+mysql> SELECT E.ENAME
+    -> FROM EMP E JOIN DEPT D
+    -> ON E.DEPTNO = D.DEPTNO
+    -> WHERE D.DNAME = 'SALES';
++---------+
+| ENAME   |
++---------+
+| GITA    |
+| ALLEN   |
+| WARD    |
+| MARTIN  |
+| BLAKE   |
+| TURNER  |
+| JAMES   |
+| HOFFMAN |
+| GRASS   |
+| AARUSH  |
+| ALEX    |
+| NATASHA |
++---------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT ENAME FROM EMP ORDER BY ENAME ASC;
++----------+
+| ENAME    |
++----------+
+| AARAV    |
+| AARUSH   |
+| ADAMS    |
+| ALEX     |
+| ALLEN    |
+| BANDISH  |
+| BLAKE    |
+| CLARK    |
+| FORD     |
+| FRED     |
+| GITA     |
+| GRASS    |
+| HOFFMAN  |
+| JAMES    |
+| JONES    |
+| KING     |
+| MARTIN   |
+| MILLER   |
+| NATASHA  |
+| Neel     |
+| Ruhan    |
+| SANGITA  |
+| SCOTT    |
+| SHARMIN  |
+| SMITH    |
+| SUPRIYA  |
+| THOMAS   |
+| TURNER   |
+| VRUSHALI |
+| WARD     |
++----------+
+30 rows in set (0.00 sec)
+
+mysql>
+mysql> SELECT * FROM EMP ORDER BY SAL DESC;
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+|  7839 | KING     | M      | PRESIDENT           | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING         | r50mpm     | 7132300081 |        1 |
+|  7840 | FRED     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE   | a12recmpm  | NULL       |        1 |
+|  7919 | HOFFMAN  | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |
+|  7415 | AARAV    | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |
+|  7788 | SCOTT    | M      | ANALYST             | 7566 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |
+|  7902 | FORD     | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |
+|  7920 | GRASS    | M      | SALESMAN            | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |
+|  7888 | Ruhan    | M      | Network             | 7888 | 1983-08-09 | 2000 | NULL |     60 |       1 | Ruhan        | BRD@1122   | NULL       |        1 |
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |
+|  7499 | ALLEN    | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |
+|  7844 | TURNER   | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |
+|  7945 | AARUSH   | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |
+|  7934 | MILLER   | M      | CLERK               | 7782 | 1982-01-23 | 1300 | 1300 |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |
+|  7521 | WARD     | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |
+|  7654 | MARTIN   | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |
+|  7949 | ALEX     | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |
+|  7889 | Neel     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 1000 | NULL |     60 |       0 | Neel         | BRD@1122   | NULL       |        1 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |
+|  7369 | SMITH    | M      | CLERK               | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE COMM IS NULL AND SAL <= 3000;
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |
+|  7369 | SMITH    | M      | CLERK               | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |
+|  7788 | SCOTT    | M      | ANALYST             | 7566 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |
+|  7888 | Ruhan    | M      | Network             | 7888 | 1983-08-09 | 2000 | NULL |     60 |       1 | Ruhan        | BRD@1122   | NULL       |        1 |
+|  7889 | Neel     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 1000 | NULL |     60 |       0 | Neel         | BRD@1122   | NULL       |        1 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |
+|  7902 | FORD     | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+18 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

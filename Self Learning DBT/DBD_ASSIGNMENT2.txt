@@ -1,0 +1,500 @@
+ SELECT ENAME, JOB, HIREDATE
+    -> FROM EMP
+    -> WHERE HIREDATE BETWEEN '1981-02-01' AND '1981-05-31';
++-------+----------+------------+
+| ENAME | JOB      | HIREDATE   |
++-------+----------+------------+
+| ALLEN | SALESMAN | 1981-02-20 |
+| WARD  | SALESMAN | 1981-02-22 |
+| JONES | MANAGER  | 1981-04-02 |
+| BLAKE | MANAGER  | 1981-05-01 |
++-------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, HIREDATE
+    -> FROM EMP
+    -> WHERE YEAR(HIREDATE) = 1982;
++---------+------------+
+| ENAME   | HIREDATE   |
++---------+------------+
+| SCOTT   | 1982-12-09 |
+| HOFFMAN | 1982-03-24 |
+| MILLER  | 1982-01-23 |
+| ALEX    | 1982-01-24 |
++---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT CURDATE() AS "Current Date";
++--------------+
+| Current Date |
++--------------+
+| 2026-05-06   |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ENAME, HIREDATE, SAL,
+    -> DATE_ADD(HIREDATE, INTERVAL 6 MONTH) AS Review_Date
+    -> FROM EMP;
++----------+------------+------+-------------+
+| ENAME    | HIREDATE   | SAL  | Review_Date |
++----------+------------+------+-------------+
+| GITA     | 1981-07-19 | 1750 | 1982-01-19  |
+| VRUSHALI | 1981-07-19 | 1750 | 1982-01-19  |
+| SHARMIN  | 1981-07-19 | 1750 | 1982-01-19  |
+| BANDISH  | 1981-07-19 | 1750 | 1982-01-19  |
+| SMITH    | 1980-12-17 |  800 | 1981-06-17  |
+| AARAV    | 1981-12-31 | 3350 | 1982-06-30  |
+| THOMAS   | 1981-07-19 | 1750 | 1982-01-19  |
+| ALLEN    | 1981-02-20 | 1600 | 1981-08-20  |
+| WARD     | 1981-02-22 | 1250 | 1981-08-22  |
+| JONES    | 1981-04-02 | 2975 | 1981-10-02  |
+| MARTIN   | 1981-09-28 | 1250 | 1982-03-28  |
+| BLAKE    | 1981-05-01 | 2850 | 1981-11-01  |
+| CLARK    | 1981-06-09 | 2450 | 1981-12-09  |
+| SCOTT    | 1982-12-09 | 3000 | 1983-06-09  |
+| KING     | 1981-11-17 | 5000 | 1982-05-17  |
+| FRED     | 1983-08-09 | 5000 | 1984-02-09  |
+| TURNER   | 1981-09-08 | 1500 | 1982-03-08  |
+| ADAMS    | 1983-01-12 | 1100 | 1983-07-12  |
+| Ruhan    | 1983-08-09 | 2000 | 1984-02-09  |
+| Neel     | 1983-08-09 | 1000 | 1984-02-09  |
+| JAMES    | 1981-12-03 |  950 | 1982-06-03  |
+| FORD     | 1981-12-03 | 3000 | 1982-06-03  |
+| HOFFMAN  | 1982-03-24 | 4150 | 1982-09-24  |
+| GRASS    | 1980-02-14 | 2575 | 1980-08-14  |
+| MILLER   | 1982-01-23 | 1300 | 1982-07-23  |
+| AARUSH   | 1980-02-14 | 1350 | 1980-08-14  |
+| ALEX     | 1982-01-24 | 1250 | 1982-07-24  |
+| NATASHA  | 1981-07-19 | 1750 | 1982-01-19  |
+| SANGITA  | 1981-07-19 | 1750 | 1982-01-19  |
+| SUPRIYA  | 1981-07-19 | 1750 | 1982-01-19  |
++----------+------------+------+-------------+
+30 rows in set (0.04 sec)
+
+mysql> SELECT ENAME, HIREDATE, SAL,
+    -> DATE_ADD(HIREDATE, INTERVAL 6 MONTH) AS Review_Date
+    -> FROM EMP;
++----------+------------+------+-------------+
+| ENAME    | HIREDATE   | SAL  | Review_Date |
++----------+------------+------+-------------+
+| GITA     | 1981-07-19 | 1750 | 1982-01-19  |
+| VRUSHALI | 1981-07-19 | 1750 | 1982-01-19  |
+| SHARMIN  | 1981-07-19 | 1750 | 1982-01-19  |
+| BANDISH  | 1981-07-19 | 1750 | 1982-01-19  |
+| SMITH    | 1980-12-17 |  800 | 1981-06-17  |
+| AARAV    | 1981-12-31 | 3350 | 1982-06-30  |
+| THOMAS   | 1981-07-19 | 1750 | 1982-01-19  |
+| ALLEN    | 1981-02-20 | 1600 | 1981-08-20  |
+| WARD     | 1981-02-22 | 1250 | 1981-08-22  |
+| JONES    | 1981-04-02 | 2975 | 1981-10-02  |
+| MARTIN   | 1981-09-28 | 1250 | 1982-03-28  |
+| BLAKE    | 1981-05-01 | 2850 | 1981-11-01  |
+| CLARK    | 1981-06-09 | 2450 | 1981-12-09  |
+| SCOTT    | 1982-12-09 | 3000 | 1983-06-09  |
+| KING     | 1981-11-17 | 5000 | 1982-05-17  |
+| FRED     | 1983-08-09 | 5000 | 1984-02-09  |
+| TURNER   | 1981-09-08 | 1500 | 1982-03-08  |
+| ADAMS    | 1983-01-12 | 1100 | 1983-07-12  |
+| Ruhan    | 1983-08-09 | 2000 | 1984-02-09  |
+| Neel     | 1983-08-09 | 1000 | 1984-02-09  |
+| JAMES    | 1981-12-03 |  950 | 1982-06-03  |
+| FORD     | 1981-12-03 | 3000 | 1982-06-03  |
+| HOFFMAN  | 1982-03-24 | 4150 | 1982-09-24  |
+| GRASS    | 1980-02-14 | 2575 | 1980-08-14  |
+| MILLER   | 1982-01-23 | 1300 | 1982-07-23  |
+| AARUSH   | 1980-02-14 | 1350 | 1980-08-14  |
+| ALEX     | 1982-01-24 | 1250 | 1982-07-24  |
+| NATASHA  | 1981-07-19 | 1750 | 1982-01-19  |
+| SANGITA  | 1981-07-19 | 1750 | 1982-01-19  |
+| SUPRIYA  | 1981-07-19 | 1750 | 1982-01-19  |
++----------+------------+------+-------------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(HIREDATE, '%W, the %D of %M, %Y')
+    -> FROM EMP;
++-----------------------------------------------+
+| DATE_FORMAT(HIREDATE, '%W, the %D of %M, %Y') |
++-----------------------------------------------+
+| Sunday, the 19th of July, 1981                |
+| Sunday, the 19th of July, 1981                |
+| Sunday, the 19th of July, 1981                |
+| Sunday, the 19th of July, 1981                |
+| Wednesday, the 17th of December, 1980         |
+| Thursday, the 31st of December, 1981          |
+| Sunday, the 19th of July, 1981                |
+| Friday, the 20th of February, 1981            |
+| Sunday, the 22nd of February, 1981            |
+| Thursday, the 2nd of April, 1981              |
+| Monday, the 28th of September, 1981           |
+| Friday, the 1st of May, 1981                  |
+| Tuesday, the 9th of June, 1981                |
+| Thursday, the 9th of December, 1982           |
+| Tuesday, the 17th of November, 1981           |
+| Tuesday, the 9th of August, 1983              |
+| Tuesday, the 8th of September, 1981           |
+| Wednesday, the 12th of January, 1983          |
+| Tuesday, the 9th of August, 1983              |
+| Tuesday, the 9th of August, 1983              |
+| Thursday, the 3rd of December, 1981           |
+| Thursday, the 3rd of December, 1981           |
+| Wednesday, the 24th of March, 1982            |
+| Thursday, the 14th of February, 1980          |
+| Saturday, the 23rd of January, 1982           |
+| Thursday, the 14th of February, 1980          |
+| Sunday, the 24th of January, 1982             |
+| Sunday, the 19th of July, 1981                |
+| Sunday, the 19th of July, 1981                |
+| Sunday, the 19th of July, 1981                |
++-----------------------------------------------+
+30 rows in set (0.01 sec)
+
+mysql> SELECT ENAME, LPAD(CONCAT('$',SAL),15,' ') AS SALARY
+    -> FROM EMP;
++----------+-----------------+
+| ENAME    | SALARY          |
++----------+-----------------+
+| GITA     |           $1750 |
+| VRUSHALI |           $1750 |
+| SHARMIN  |           $1750 |
+| BANDISH  |           $1750 |
+| SMITH    |            $800 |
+| AARAV    |           $3350 |
+| THOMAS   |           $1750 |
+| ALLEN    |           $1600 |
+| WARD     |           $1250 |
+| JONES    |           $2975 |
+| MARTIN   |           $1250 |
+| BLAKE    |           $2850 |
+| CLARK    |           $2450 |
+| SCOTT    |           $3000 |
+| KING     |           $5000 |
+| FRED     |           $5000 |
+| TURNER   |           $1500 |
+| ADAMS    |           $1100 |
+| Ruhan    |           $2000 |
+| Neel     |           $1000 |
+| JAMES    |            $950 |
+| FORD     |           $3000 |
+| HOFFMAN  |           $4150 |
+| GRASS    |           $2575 |
+| MILLER   |           $1300 |
+| AARUSH   |           $1350 |
+| ALEX     |           $1250 |
+| NATASHA  |           $1750 |
+| SANGITA  |           $1750 |
+| SUPRIYA  |           $1750 |
++----------+-----------------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, HIREDATE, DAYNAME(HIREDATE) AS DAY
+    -> FROM EMP
+    -> ORDER BY FIELD(DAYNAME(HIREDATE),
+    -> 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday');
++----------+------------+-----------+
+| ENAME    | HIREDATE   | DAY       |
++----------+------------+-----------+
+| MARTIN   | 1981-09-28 | Monday    |
+| CLARK    | 1981-06-09 | Tuesday   |
+| KING     | 1981-11-17 | Tuesday   |
+| FRED     | 1983-08-09 | Tuesday   |
+| TURNER   | 1981-09-08 | Tuesday   |
+| Ruhan    | 1983-08-09 | Tuesday   |
+| Neel     | 1983-08-09 | Tuesday   |
+| SMITH    | 1980-12-17 | Wednesday |
+| ADAMS    | 1983-01-12 | Wednesday |
+| HOFFMAN  | 1982-03-24 | Wednesday |
+| AARAV    | 1981-12-31 | Thursday  |
+| JONES    | 1981-04-02 | Thursday  |
+| SCOTT    | 1982-12-09 | Thursday  |
+| JAMES    | 1981-12-03 | Thursday  |
+| FORD     | 1981-12-03 | Thursday  |
+| GRASS    | 1980-02-14 | Thursday  |
+| AARUSH   | 1980-02-14 | Thursday  |
+| ALLEN    | 1981-02-20 | Friday    |
+| BLAKE    | 1981-05-01 | Friday    |
+| MILLER   | 1982-01-23 | Saturday  |
+| GITA     | 1981-07-19 | Sunday    |
+| VRUSHALI | 1981-07-19 | Sunday    |
+| SHARMIN  | 1981-07-19 | Sunday    |
+| BANDISH  | 1981-07-19 | Sunday    |
+| THOMAS   | 1981-07-19 | Sunday    |
+| WARD     | 1981-02-22 | Sunday    |
+| ALEX     | 1982-01-24 | Sunday    |
+| NATASHA  | 1981-07-19 | Sunday    |
+| SANGITA  | 1981-07-19 | Sunday    |
+| SUPRIYA  | 1981-07-19 | Sunday    |
++----------+------------+-----------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM ORDERS
+    -> WHERE YEAR(ORDER_DATE) = 1986;
+ERROR 1054 (42S22): Unknown column 'ORDER_DATE' in 'where clause'
+mysql> ^C
+mysql> SELECT DAYNAME(CURDATE());
++--------------------+
+| DAYNAME(CURDATE()) |
++--------------------+
+| Wednesday          |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT UPPER(ENAME),
+    -> DATE_FORMAT(HIREDATE,'%D %M, %Y')
+    -> FROM EMP
+    -> WHERE DEPTNO = 10;
++--------------+-----------------------------------+
+| UPPER(ENAME) | DATE_FORMAT(HIREDATE,'%D %M, %Y') |
++--------------+-----------------------------------+
+| AARAV        | 31st December, 1981               |
+| THOMAS       | 19th July, 1981                   |
+| CLARK        | 9th June, 1981                    |
+| KING         | 17th November, 1981               |
+| MILLER       | 23rd January, 1982                |
++--------------+-----------------------------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT ORDER_DATE, SHIP_DATE,
+    -> TIMESTAMPDIFF(MONTH, ORDER_DATE, SHIP_DATE) AS MONTHS,
+    -> DATEDIFF(SHIP_DATE, ORDER_DATE) AS DAYS
+    -> FROM ORDERS;
+ERROR 1054 (42S22): Unknown column 'ORDER_DATE' in 'field list'
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE MONTH(HIREDATE) = 12;
++-------+-------+--------+---------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+| EMPNO | ENAME | GENDER | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive |
++-------+-------+--------+---------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+|  7369 | SMITH | M      | CLERK   | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |
+|  7415 | AARAV | M      | CLERK   | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |
+|  7788 | SCOTT | M      | ANALYST | 7566 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |
+|  7900 | JAMES | M      | CLERK   | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |
+|  7902 | FORD  | M      | ANALYST | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |
++-------+-------+--------+---------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT DAYNAME(HIREDATE)
+    -> FROM EMP
+    -> WHERE ENAME = 'KING';
++-------------------+
+| DAYNAME(HIREDATE) |
++-------------------+
+| Tuesday           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT MONTHNAME(HIREDATE)
+    -> FROM EMP
+    -> WHERE ENAME = 'MARTIN';
++---------------------+
+| MONTHNAME(HIREDATE) |
++---------------------+
+| September           |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATEDIFF(CURDATE(), HIREDATE)
+    -> FROM EMP
+    -> WHERE ENAME = 'ADAMS';
++-------------------------------+
+| DATEDIFF(CURDATE(), HIREDATE) |
++-------------------------------+
+|                         15820 |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_ADD(CURDATE(), INTERVAL 15 DAY);
++--------------------------------------+
+| DATE_ADD(CURDATE(), INTERVAL 15 DAY) |
++--------------------------------------+
+| 2026-05-21                           |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql>
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE YEAR(HIREDATE) > 1980;
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |
+|  7415 | AARAV    | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |
+|  7499 | ALLEN    | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |
+|  7521 | WARD     | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |
+|  7654 | MARTIN   | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |
+|  7788 | SCOTT    | M      | ANALYST             | 7566 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |
+|  7839 | KING     | M      | PRESIDENT           | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING         | r50mpm     | 7132300081 |        1 |
+|  7840 | FRED     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE   | a12recmpm  | NULL       |        1 |
+|  7844 | TURNER   | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |
+|  7888 | Ruhan    | M      | Network             | 7888 | 1983-08-09 | 2000 | NULL |     60 |       1 | Ruhan        | BRD@1122   | NULL       |        1 |
+|  7889 | Neel     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 1000 | NULL |     60 |       0 | Neel         | BRD@1122   | NULL       |        1 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |
+|  7902 | FORD     | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |
+|  7919 | HOFFMAN  | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |
+|  7934 | MILLER   | M      | CLERK               | 7782 | 1982-01-23 | 1300 | 1300 |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |
+|  7949 | ALEX     | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+27 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(ENAME,'-',JOB)
+    -> FROM EMP;
++------------------------------+
+| CONCAT(ENAME,'-',JOB)        |
++------------------------------+
+| GITA-Compliance officers     |
+| VRUSHALI-Compliance officers |
+| SHARMIN-Public Relation      |
+| BANDISH-Public Relation      |
+| SMITH-CLERK                  |
+| AARAV-CLERK                  |
+| THOMAS-CLERK                 |
+| ALLEN-SALESMAN               |
+| WARD-SALESMAN                |
+| JONES-MANAGER                |
+| MARTIN-SALESMAN              |
+| BLAKE-MANAGER                |
+| CLARK-MANAGER                |
+| SCOTT-ANALYST                |
+| KING-PRESIDENT               |
+| FRED-vice PRESIDENT          |
+| TURNER-SALESMAN              |
+| ADAMS-CLERK                  |
+| Ruhan-Network                |
+| Neel-vice PRESIDENT          |
+| JAMES-CLERK                  |
+| FORD-ANALYST                 |
+| HOFFMAN-MANAGER              |
+| GRASS-SALESMAN               |
+| MILLER-CLERK                 |
+| AARUSH-SALESMAN              |
+| ALEX-MANAGER                 |
+| NATASHA-CLERK                |
+| SANGITA-Compliance officers  |
+| SUPRIYA-ANALYST              |
++------------------------------+
+30 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT LENGTH(ENAME)
+    -> FROM EMP;
++---------------+
+| LENGTH(ENAME) |
++---------------+
+|             4 |
+|             8 |
+|             7 |
+|             5 |
+|             6 |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, DATE_FORMAT(HIREDATE,'%d/%m/%Y')
+    -> FROM EMP
+    -> WHERE DEPTNO = 20;
++---------+----------------------------------+
+| ENAME   | DATE_FORMAT(HIREDATE,'%d/%m/%Y') |
++---------+----------------------------------+
+| SHARMIN | 19/07/1981                       |
+| BANDISH | 19/07/1981                       |
+| SMITH   | 17/12/1980                       |
+| JONES   | 02/04/1981                       |
+| SCOTT   | 09/12/1982                       |
+| FRED    | 09/08/1983                       |
+| ADAMS   | 12/01/1983                       |
+| FORD    | 03/12/1981                       |
++---------+----------------------------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT DAYNAME(HIREDATE)
+    -> FROM EMP
+    -> WHERE ENAME = 'SMITH';
++-------------------+
+| DAYNAME(HIREDATE) |
++-------------------+
+| Wednesday         |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(HIREDATE,'The %D of %b %Y')
+    -> FROM EMP
+    -> WHERE JOB = 'ANALYST';
++-----------------------------------------+
+| DATE_FORMAT(HIREDATE,'The %D of %b %Y') |
++-----------------------------------------+
+| The 9th of Dec 1982                     |
+| The 3rd of Dec 1981                     |
+| The 19th of Jul 1981                    |
++-----------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT DEPTNO,
+    -> SUM(SAL*12 + IFNULL(COMM,1000*12)) AS TOTAL_COMP
+    -> FROM EMP
+    -> GROUP BY DEPTNO;
++--------+------------+
+| DEPTNO | TOTAL_COMP |
++--------+------------+
+|     10 |     215500 |
+|     20 |     328500 |
+|     30 |     334800 |
+|     50 |      99000 |
+|     60 |      60000 |
++--------+------------+
+5 rows in set (0.21 sec)
+
+mysql> SELECT ENAME,
+    -> CASE MGR
+    -> WHEN 7788 THEN 'CLARK'
+    -> WHEN 7698 THEN 'BLAKE'
+    -> WHEN 7566 THEN 'JONES'
+    -> ELSE 'KING'
+    -> END AS MANAGER
+    -> FROM EMP;
++----------+---------+
+| ENAME    | MANAGER |
++----------+---------+
+| GITA     | KING    |
+| VRUSHALI | KING    |
+| SHARMIN  | KING    |
+| BANDISH  | KING    |
+| SMITH    | KING    |
+| AARAV    | KING    |
+| THOMAS   | KING    |
+| ALLEN    | BLAKE   |
+| WARD     | BLAKE   |
+| JONES    | KING    |
+| MARTIN   | BLAKE   |
+| BLAKE    | KING    |
+| CLARK    | KING    |
+| SCOTT    | JONES   |
+| KING     | KING    |
+| FRED     | KING    |
+| TURNER   | BLAKE   |
+| ADAMS    | CLARK   |
+| Ruhan    | KING    |
+| Neel     | KING    |
+| JAMES    | BLAKE   |
+| FORD     | JONES   |
+| HOFFMAN  | JONES   |
+| GRASS    | KING    |
+| MILLER   | KING    |
+| AARUSH   | KING    |
+| ALEX     | BLAKE   |
+| NATASHA  | KING    |
+| SANGITA  | KING    |
+| SUPRIYA  | KING    |
++----------+---------+
+30 rows in set (0.00 sec)
+
+mysql>

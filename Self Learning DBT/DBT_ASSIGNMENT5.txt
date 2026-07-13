@@ -1,0 +1,242 @@
+mysql> SELECT s.ename AS Salesperson, c.name AS Customer, o.total AS amount FROM emp s, customer c, ord o WHERE s.empno = c.repid AND c.custid = o.custid;
++-------------+----------------+----------+
+| Salesperson | Customer       | amount   |
++-------------+----------------+----------+
+| TURNER      | JOCKSPORTS     |     3.40 |
+| TURNER      | JOCKSPORTS     |    97.50 |
+| TURNER      | JOCKSPORTS     |  4450.00 |
+| TURNER      | JOCKSPORTS     |   730.00 |
+| TURNER      | JOCKSPORTS     |   250.00 |
+| TURNER      | JOCKSPORTS     |   473.93 |
+| TURNER      | JOCKSPORTS     |   289.99 |
+| WARD        | TKB SPORT SHOP |   101.40 |
+| MARTIN      | VOLLYRITE      |    56.00 |
+| MARTIN      | VOLLYRITE      |   224.00 |
+| MARTIN      | VOLLYRITE      |    45.00 |
+| MARTIN      | VOLLYRITE      | 23940.00 |
+| MARTIN      | VOLLYRITE      |  3510.50 |
+| WARD        | JUST TENNIS    |   764.00 |
+| ALLEN       | EVERY MOUNTAIN |     5.60 |
+| ALLEN       | EVERY MOUNTAIN |    35.20 |
+| ALLEN       | EVERY MOUNTAIN |  5860.00 |
+| ALLEN       | EVERY MOUNTAIN |  1260.00 |
+| ALLEN       | EVERY MOUNTAIN |   362.12 |
+| ALLEN       | EVERY MOUNTAIN |   232.87 |
+| TURNER      | K + T SPORTS   | 46370.00 |
+| TURNER      | K + T SPORTS   |  1125.00 |
+| TURNER      | K + T SPORTS   |   189.00 |
+| TURNER      | K + T SPORTS   |  1255.00 |
+| WARD        | SHAPE UP       |     2.40 |
+| WARD        | SHAPE UP       |   698.00 |
+| ALLEN       | WOMENS SPORTS  |   710.00 |
+| ALLEN       | WOMENS SPORTS  |  1675.00 |
+| TURNER      | NORTH WOODS    |  6400.00 |
++-------------+----------------+----------+
+29 rows in set (0.00 sec)
+
+mysql> SELECT e.ename AS Employee, m.ename AS Manager FROM emp e, emp m WHERE e.mgr = m.empno;
++----------+---------+
+| Employee | Manager |
++----------+---------+
+| GITA     | GRASS   |
+| VRUSHALI | GRASS   |
+| SHARMIN  | GRASS   |
+| BANDISH  | GRASS   |
+| SMITH    | FORD    |
+| AARAV    | FORD    |
+| THOMAS   | GRASS   |
+| ALLEN    | BLAKE   |
+| WARD     | BLAKE   |
+| JONES    | KING    |
+| MARTIN   | BLAKE   |
+| BLAKE    | KING    |
+| CLARK    | KING    |
+| SCOTT    | JONES   |
+| FRED     | KING    |
+| TURNER   | BLAKE   |
+| ADAMS    | SCOTT   |
+| Ruhan    | Ruhan   |
+| Neel     | KING    |
+| JAMES    | BLAKE   |
+| FORD     | JONES   |
+| HOFFMAN  | JONES   |
+| GRASS    | HOFFMAN |
+| MILLER   | CLARK   |
+| AARUSH   | FORD    |
+| ALEX     | BLAKE   |
+| NATASHA  | GRASS   |
+| SANGITA  | GRASS   |
+| SUPRIYA  | GRASS   |
++----------+---------+
+29 rows in set (0.00 sec)
+
+mysql> SELECT d.*, e.ename FROM dept d LEFT JOIN emp e ON d.deptno = e.deptno;
++--------+------------+----------+------------+------------+----------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | ename    |
++--------+------------+----------+------------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | AARAV    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | THOMAS   |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | CLARK    |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | KING     |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 | MILLER   |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | SHARMIN  |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | BANDISH  |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | SMITH    |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | JONES    |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | SCOTT    |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | FRED     |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | ADAMS    |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 | FORD     |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | GITA     |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | ALLEN    |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | WARD     |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | MARTIN   |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | BLAKE    |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | TURNER   |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | JAMES    |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | HOFFMAN  |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | GRASS    |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | AARUSH   |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | ALEX     |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 | NATASHA  |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 | NULL     |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | VRUSHALI |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | SANGITA  |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 | SUPRIYA  |
+|     60 | IT         | BARODA   | BRD@1122   | 02/10/1989 | Ruhan    |
+|     60 | IT         | BARODA   | BRD@1122   | 02/10/1989 | Neel     |
++--------+------------+----------+------------+------------+----------+
+31 rows in set (0.00 sec)
+
+mysql> SELECT c.name, o.ordid, o.shipdate FROM customer c, ord o WHERE c.custid = o.custid AND o.shipdate BETWEEN '1987-01-01' AND '1987-12-31';
++----------------+-------+------------+
+| name           | ordid | shipdate   |
++----------------+-------+------------+
+| JOCKSPORTS     |   620 | 1987-03-12 |
+| JOCKSPORTS     |   621 | 1987-03-01 |
+| JOCKSPORTS     |   627 | 1987-02-14 |
+| JOCKSPORTS     |   628 | 1987-03-14 |
+| JOCKSPORTS     |   629 | 1987-03-16 |
+| TKB SPORT SHOP |   610 | 1987-01-08 |
+| VOLLYRITE      |   611 | 1987-01-11 |
+| VOLLYRITE      |   614 | 1987-02-05 |
+| VOLLYRITE      |   618 | 1987-03-06 |
+| JUST TENNIS    |   616 | 1987-02-10 |
+| EVERY MOUNTAIN |   612 | 1987-01-20 |
+| EVERY MOUNTAIN |   619 | 1987-02-04 |
+| EVERY MOUNTAIN |   630 | 1987-02-22 |
+| EVERY MOUNTAIN |   631 | 1987-02-23 |
+| K + T SPORTS   |   617 | 1987-03-03 |
+| K + T SPORTS   |   622 | 1987-01-01 |
+| K + T SPORTS   |   624 | 1987-01-06 |
+| K + T SPORTS   |   625 | 1987-01-10 |
+| WOMENS SPORTS  |   615 | 1987-02-06 |
+| WOMENS SPORTS  |   626 | 1987-02-01 |
+| NORTH WOODS    |   613 | 1987-02-01 |
++----------------+-------+------------+
+21 rows in set (0.00 sec)
+
+mysql> SELECT e.ename AS Salesman, c.name AS Customer FROM emp e, customer c WHERE e.empno = c.repid AND e.job = 'SALESMAN';
++----------+----------------+
+| Salesman | Customer       |
++----------+----------------+
+| TURNER   | JOCKSPORTS     |
+| WARD     | TKB SPORT SHOP |
+| MARTIN   | VOLLYRITE      |
+| WARD     | JUST TENNIS    |
+| ALLEN    | EVERY MOUNTAIN |
+| TURNER   | K + T SPORTS   |
+| WARD     | SHAPE UP       |
+| ALLEN    | WOMENS SPORTS  |
+| TURNER   | NORTH WOODS    |
++----------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT e.ename AS Salesman, c.name AS Customer FROM emp e, customer c WHERE e.empno = c.repid AND (e.comm IS NULL OR e.comm = 0);
++----------+--------------+
+| Salesman | Customer     |
++----------+--------------+
+| TURNER   | JOCKSPORTS   |
+| TURNER   | K + T SPORTS |
+| TURNER   | NORTH WOODS  |
++----------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT e.ename, e.sal, e.comm, s.grade FROM emp e, salgrade s WHERE e.sal BETWEEN s.losal AND s.hisal AND e.job = 'SALESMAN';
++--------+------+------+-------+
+| ename  | sal  | comm | grade |
++--------+------+------+-------+
+| ALLEN  | 1600 |  300 |     3 |
+| WARD   | 1250 |  500 |     2 |
+| MARTIN | 1250 | 1400 |     2 |
+| TURNER | 1500 |    0 |     3 |
+| GRASS  | 2575 | 2700 |     4 |
+| AARUSH | 1350 | 2700 |     2 |
++--------+------+------+-------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT DESCRIP ,PRICE FROM product WHERE DESCRIP LIKE '%TENNIS%';
++-------------------------+-------+
+| DESCRIP                 | PRICE |
++-------------------------+-------+
+| ACE TENNIS RACKET I     |   110 |
+| ACE TENNIS RACKET II    |   105 |
+| ACE TENNIS BALLS-3 PACK |   125 |
+| ACE TENNIS BALLS-6 PACK |   155 |
+| ACE TENNIS NET          |   150 |
+| SP TENNIS RACKET        |   110 |
+| RH: "GUIDE TO TENNIS"   |   145 |
+| ACE TENNIS RACKET II    |   190 |
+| ACE TENNIS RACKET I     |   180 |
+| ACE TENNIS BALLS-6 PACK |   800 |
+| ACE TENNIS BALLS-6 PACK |   100 |
+| ACE TENNIS NET          |   400 |
+| SP TENNIS RACKET        |   345 |
+| ACE TENNIS BALLS-3 PACK |   120 |
+| ACE TENNIS BALLS-3 PACK |   500 |
++-------------------------+-------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT p.descrip FROM product p, item i, ord o WHERE p.prodid = i.prodid AND i.ordid = o.ordid  AND o.custid IN (100, 103);
++-------------------------+
+| descrip                 |
++-------------------------+
+| RH: "GUIDE TO TENNIS"   |
+| ACE TENNIS RACKET II    |
+| ACE TENNIS BALLS-3 PACK |
+| ACE TENNIS NET          |
+| ACE TENNIS RACKET I     |
+| SB ENERGY BAR-6 PACK    |
++-------------------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT d.dname, e.sal FROM emp e, dept d WHERE e.deptno = d.deptno AND (e.sal, IFNULL(e.comm, 0)) IN (SELECT sal, IFNULL(comm, 0) FROM emp WHERE deptno = (SELECT deptno FROM dept WHERE loc = 'DALLAS'));
++------------+------+
+| dname      | sal  |
++------------+------+
+| ACCOUNTING | 1750 |
+| ACCOUNTING | 5000 |
+| RESEARCH   | 1750 |
+| RESEARCH   | 1750 |
+| RESEARCH   |  800 |
+| RESEARCH   | 2975 |
+| RESEARCH   | 3000 |
+| RESEARCH   | 5000 |
+| RESEARCH   | 1100 |
+| RESEARCH   | 3000 |
+| SALES      | 1750 |
+| SALES      | 1750 |
+| HR         | 1750 |
+| HR         | 1750 |
+| HR         | 1750 |
++------------+------+
+15 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT job FROM emp WHERE deptno = (SELECT deptno FROM dept WHERE dname = 'RESEARCH')AND job IN (SELECT jo FROM emp WHERE deptno = (SELECT deptno FROM dept WHERE dname = 'ACCOUNTING'))ORDER BY job ASC;
++---------+
+| job     |
++---------+
+| CLERK   |
+| MANAGER |
++---------+
+2 rows in set (0.00 sec)
